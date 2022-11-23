@@ -1,0 +1,13 @@
+.item {
+    margin-top: 10px;
+    color: white;
+}
+
+.item.active {
+    color: crimson;
+}
+
+.item img {
+    width: 50px;
+    border-radius: 50%;
+}
