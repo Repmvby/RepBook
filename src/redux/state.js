@@ -1,8 +1,10 @@
-let rerenderEntireTree = () => {
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import friendListReducer from "./friend-list-reducer";
 
-}
+
 let store = {
-    state: {
+    _state: {
         dialogsData: {
             dialogs: [
                 {id: 1, name: 'Dima'},
@@ -17,6 +19,7 @@ let store = {
                 {id: 3, message: 'Lets go'},
                 {id: 4, message: 'Holy Loly'},
             ],
+            newMessageBody:'',
         },
         profileData: {
             posts: [
@@ -25,6 +28,7 @@ let store = {
                 {id: 3, message: 'Holy shit!', likesCount: 4},
 
             ],
+            newPostBody: '',
         },
         friendList: {
             friends: [
@@ -34,30 +38,26 @@ let store = {
                 {name: 'Vasya', id: 4},
             ]
         },
-        addPost(message) {
+    },
+    _callSubscriber() {
+    },
 
-            let newPost = {
-                id: 1,
-                message: message,
-                likesCount: 0,
-            }
-            store.state.profileData.posts.push(newPost);
-            rerenderEntireTree(store);
-        },
+    getState() {
+        return this._state;
+    },
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
 
-        addMessage(text) {
-            let newMessage = {
-                id: 5,
-                message: text,
-            }
-            store.state.dialogsData.messages.push(newMessage);
-            rerenderEntireTree(store);
-        },
 
-        subscribe(observer) {
-            rerenderEntireTree = observer;
-        }
+    dispatch (action) {
+        this._state.profileData = profileReducer(this._state.profileData,action)
+        this._state.dialogsData = dialogsReducer(this._state.dialogsData,action)
+        this._state.friendList = friendListReducer(this._state.friendList,action)
+        this._callSubscriber(this._state)
 
     }
 };
+
 export default store;
+window.store = store;

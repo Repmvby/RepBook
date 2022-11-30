@@ -14,18 +14,20 @@ const App = (props) => {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar friends={props.friends}/>
+                <Navbar friends={props.state.friendList.friends}/>
                 <div className='content-wrapper-app'>
                     <Routes>
                         <Route path="/profile" element={<Profile
-                            posts={props.posts}
-                            addPost={props.addPost}
+                            posts={props.state.profileData.posts}
+                            newPostBody ={props.state.profileData.newPostBody}
+                            dispatch={props.dispatch}
                         />}
                         />
                         <Route path="/messages/*" element={<Dialogs
-                            messages={props.messages}
-                            dialogs={props.dialogs}
-                            addMessage={props.addMessage}
+                            messages={props.state.dialogsData.messages}
+                            dialogs={props.state.dialogsData.dialogs}
+                            newMessageBody={props.state.dialogsData.newMessageBody}
+                            dispatch={props.dispatch}
                         />}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/news" element={<News/>}/>
