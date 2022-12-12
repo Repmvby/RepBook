@@ -1,9 +1,7 @@
 import React from 'react';
 import s from './Dialogs.module.css';
-import {NavLink} from "react-router-dom";
 import DialogItem from "./dialogItem/DialogItem";
 import Message from "./message/Message";
-import {newMessageActionCreator, updateNewMessageActionCreator} from "../../redux/dialogs-reducer";
 
 
 const Dialogs = (props) => {
@@ -21,11 +19,10 @@ const Dialogs = (props) => {
 
     let onNewMessageChange = (e) => {
         let body = e.target.value;
-        props.dispatch(updateNewMessageActionCreator(body))
-
+        props.updateNewMessageText(body)
     }
     let onSendMessageClick = () => {
-        props.dispatch(newMessageActionCreator())
+        props.AddNewMessage();
 
     }
 
@@ -36,12 +33,18 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <div className={s.buttonContainer}>
-                    <div>
-                        <textarea value={newMessageBody} onChange={onNewMessageChange}></textarea>
+                <div className={s.messageContainer}>
+                    <div className={s.inputWrapper}>
+                        <div className={s.inputData}>
+                            <input type="text" required value={newMessageBody} onChange={onNewMessageChange}></input>
+                            <div className={s.underline}></div>
+                            <label>Write Some...</label>
+                        </div>
                     </div>
-                    <div>
-                        <button onClick={onSendMessageClick}>Sent message</button>
+                    <div className={s.buttonContainer}>
+                        <div>
+                            <button className={s.button} onClick={onSendMessageClick}><span>Send</span></button>
+                        </div>
                     </div>
                 </div>
             </div>

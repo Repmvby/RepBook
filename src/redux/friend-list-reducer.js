@@ -4,9 +4,11 @@ let initialState = {
         {name: 'Oleg', id: 2},
         {name: 'Petya', id: 3},
         {name: 'Vasya', id: 4},
+
     ]
 }
 const friendListReducer = (state = initialState, action) => {
-    return state
+    let stateCopy = {...state}
+    return stateCopy
 }
 export default friendListReducer;

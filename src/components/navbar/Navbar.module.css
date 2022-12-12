@@ -1,14 +1,19 @@
 .nav{
     grid-area: n;
-    background-color: #E8A87C;
+    background-color: #9d9c9a;
     padding: 10px;
+
 }
 .item {
     color: white;
+    text-decoration: none;
+
 }
 
 .activeLink {
-    color: gold;
+    color: black;
+    text-decoration: none;
+
 }
 .friendsLogoContainer{
     display: flex;

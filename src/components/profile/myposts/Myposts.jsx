@@ -1,7 +1,6 @@
 import s from './Myposts.module.css';
 import Post from "./post/Post";
 import React from "react";
-import {addPostActionCreator, updatePostMessageBodyActionCreator} from "../../../redux/profile-reducer";
 
 
 const Myposts = (props) => {
@@ -14,14 +13,14 @@ const Myposts = (props) => {
         />
     })
 
-    let newPostMessageBody = props.newPostBody;
+    let newPostMessageBody = props.MessageBody;
 
     let onNewPostMessageChange = (e) => {
         let body = e.target.value;
-        props.dispatch(updatePostMessageBodyActionCreator(body))
+        props.updateNewPostText(body)
     }
     let onSendPOstClick = () => {
-        props.dispatch(addPostActionCreator());
+        props.AddPost()
     };
 
     return (
@@ -32,11 +31,17 @@ const Myposts = (props) => {
             <div>
                 <h3>New Post</h3>
             </div>
-            <div>
-                <textarea value={newPostMessageBody} onChange={onNewPostMessageChange}></textarea>
+            <div className={s.inputWrapper}>
+                <div className={s.inputData}>
+                    <input type="text" required value={newPostMessageBody} onChange={onNewPostMessageChange}></input>
+                    <div className={s.underline}></div>
+                    <label>Write Some...</label>
+                </div>
             </div>
-            <div>
-                <button onClick={onSendPOstClick}>Post</button>
+            <div className={s.buttonContainer}>
+                <div>
+                    <button className={s.button} onClick={onSendPOstClick}><span>Post</span></button>
+                </div>
             </div>
             <div>
                 {postsElements}

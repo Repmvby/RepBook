@@ -1,0 +1,90 @@
+.userPhoto {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.usersContainer {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 1em;
+}
+
+.userButtonPhoto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+
+
+}
+
+.userInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    border: 1px black solid;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.buttonContainer {
+    display: flex;
+    align-content: flex-start;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+.button {
+    background: #72747a;
+    color: black;
+    position: relative;
+    left:55%;
+    top:95%;
+    border: 0;
+    transform: translate(-50%,-50%);
+    height: 40px;
+    width:160px;
+    line-height:40px;
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+.button:before {
+    position: absolute;
+    content: '';
+    height: 70px;
+    width:150px;
+    top:-15px;
+    left:0;
+    border-left:2px solid black;
+    border-right:2px solid black;
+    transition: 1s;
+
+}
+.button:after {
+    position: absolute;
+    content: '';
+    height: 40px;
+    width:180px;
+    top:0;
+    left:-15px;
+    border-top:2px solid black;
+    border-bottom:2px solid black;
+    transition: 1s;
+
+
+}
+.button:hover {
+    color: white;
+    transition: 0.5s;
+}
+.button:hover:before{
+    transform: rotateY(180deg);
+}
+.button:hover:after{
+    transform: rotateX(180deg);
+
+}
