@@ -1,5 +1,8 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_ADD_MESSAGE_BODY = 'UPDATE-ADD-MESSAGE-BODY';
+const SET_USER_PROFILE ='SET-USER-PROFILE'
+const LOOKING_FOR_A_JOB = 'LOOKING_FOR_A_JOB';
+const HIRED_TO_DO_JOB = 'HIRED-TO-DO-JOB';
 
 let initialState = {
     posts: [
@@ -9,6 +12,7 @@ let initialState = {
 
     ],
     newPostBody: '',
+    profile: null,
 }
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -26,6 +30,15 @@ const profileReducer = (state = initialState, action) => {
             stateCopy.newPostBody = '';
             return stateCopy;
         }
+        case SET_USER_PROFILE: {
+            return {...state,profile: action.profile}
+        }
+        case LOOKING_FOR_A_JOB: {
+            return {...state,profile: {...state.profile,lookingForAJob: true}}
+        }
+        case HIRED_TO_DO_JOB: {
+            return {...state,profile: {...state.profile,lookingForAJob: false}}
+        }
 
         default:
             return state;
@@ -35,5 +48,8 @@ const profileReducer = (state = initialState, action) => {
 
     export const addPostActionCreator = () => ({type: ADD_POST})
     export const updatePostMessageBodyActionCreator = (text) => ({type: UPDATE_ADD_MESSAGE_BODY, body: text})
+    export const setUserProfile = (profile) => ({type: SET_USER_PROFILE , profile})
+    export const setLookingForAJob = () => ({type: LOOKING_FOR_A_JOB})
+    export const setHiredToDoJob = () => ({type: HIRED_TO_DO_JOB})
 
     export default profileReducer;
